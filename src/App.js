@@ -11,7 +11,7 @@ function App() {
           <img src="/logo.png" alt="logo" width="40" />
           <strong style={{ fontSize: "1.2rem" }}>AudioMint</strong>
         </div>
-        <a href="mailto:" className="btn-sub">
+        <a href="mailto: sandip.tint.2020@gmail.com" className="btn-sub">
           Support
         </a>
       </nav>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - AudioMint Companion</title>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      h1 {
+        color: #07070a;
+      }
+      h2 {
+        color: #d400ff;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy Policy for AudioMint Companion</h1>
+    <p><strong>Effective Date:</strong> April 10, 2026</p>
+
+    <p>
+      This Privacy Policy applies to the "AudioMint Companion" browser
+      extension. We believe in building software that respects your privacy. Our
+      extension is designed to be a local utility bridging your browser to the
+      AudioMint desktop application.
+    </p>
+
+    <h2>1. Data Collection and Usage</h2>
+    <p>
+      <strong
+        >We do not collect, store, or transmit any personal data, browsing
+        history, or audio data to any external servers or third parties.</strong
+      >
+    </p>
+    <p>
+      The AudioMint Companion extension operates entirely locally on your
+      machine. Any audio captured by the extension is routed directly to your
+      locally running AudioMint desktop application via a local WebSocket
+      connection (ws://127.0.0.1).
+    </p>
+
+    <h2>2. Why We Need Permissions</h2>
+    <p>
+      To function properly, the extension requires specific browser permissions.
+      Here is exactly why we request them:
+    </p>
+    <ul>
+      <li>
+        <strong><code>tabCapture</code>:</strong> This permission is required to
+        capture the audio stream from the currently active browser tab. This
+        audio stream is passed directly to the local AudioMint desktop app for
+        routing and is never saved, recorded, or transmitted to the internet.
+      </li>
+      <li>
+        <strong><code>activeTab</code>:</strong> This permission allows the
+        extension to know which specific tab you want to capture audio from when
+        you interact with the extension icon.
+      </li>
+    </ul>
+
+    <h2>3. Third-Party Analytics</h2>
+    <p>
+      We do not use any third-party analytics, trackers, or advertising
+      frameworks within this extension.
+    </p>
+
+    <h2>4. Changes to This Policy</h2>
+    <p>
+      If we update this policy, we will post the changes on this page and update
+      the "Effective Date" at the top.
+    </p>
+
+    <h2>5. Contact</h2>
+    <p>
+      If you have any questions about this Privacy Policy or how your data is
+      handled, please contact the developer, Sandip Ghosh, at [Insert Your
+      Support Email Here].
+    </p>
+  </body>
+</html>

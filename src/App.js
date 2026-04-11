@@ -88,7 +88,7 @@ function App() {
           }}
         >
           <code style={{ color: "var(--neon-blue)", fontSize: "0.8rem" }}>
-            // Local Connection
+            {"// Local Connection"}
             <br />
             ws://127.0.0.1:8766
             <br />

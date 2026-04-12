@@ -37,13 +37,13 @@ function App() {
 
         <div className="download-box">
           <a
-            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.0/AudioMint-2.0.0-arm64.dmg"
+            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.1/AudioMint-2.0.0-arm64.dmg"
             className="btn-main"
           >
             Download for Apple Silicon Macs (arm64)
           </a>
           <a
-            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.0/AudioMint.Setup.2.0.0.exe"
+            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.1/AudioMint.Setup.2.0.0.exe"
             className="btn-main"
           >
             Download for Windows (x64)

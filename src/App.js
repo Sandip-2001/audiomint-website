@@ -49,7 +49,7 @@ function App() {
             Download for Windows (x64)
           </a>
           <div style={{ marginTop: "10px", display: "flex", gap: "20px" }}>
-            <a href="#setup" className="btn-sub">
+            <a href="/setup.html" className="btn-sub">
               View Setup Guide
             </a>
           </div>

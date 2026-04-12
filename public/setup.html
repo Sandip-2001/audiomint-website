@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AudioMint Setup & Troubleshooting</title>
+    <style>
+      :root {
+        --bg-dark: #07070a;
+        --glass-bg: rgba(20, 20, 30, 0.6);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --text-main: #ffffff;
+        --text-muted: #8b8b9e;
+        --neon-blue: #00f3ff;
+        --neon-pink: #d400ff;
+        --warning-orange: #ffb86c;
+        --error-red: #ff5f56;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-dark);
+        background-image:
+          radial-gradient(
+            circle at 10% 0%,
+            rgba(0, 150, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 90% 100%,
+            rgba(212, 0, 255, 0.08) 0%,
+            transparent 50%
+          );
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 800px;
+        width: 90%;
+        margin: 60px auto;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .header h1 {
+        font-size: 32px;
+        font-weight: 800;
+        margin: 0 0 10px 0;
+        letter-spacing: 0.5px;
+      }
+
+      .header p {
+        color: var(--text-muted);
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 35px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .card h2 {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 15px;
+      }
+
+      .card h3 {
+        font-size: 16px;
+        color: #fff;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .step-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+      }
+
+      .step-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 15px;
+        color: #d1d5db;
+      }
+
+      .step-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--neon-blue);
+        font-weight: bold;
+      }
+
+      .cross-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+      }
+
+      .cross-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 15px;
+        color: var(--text-muted);
+      }
+
+      .cross-list li::before {
+        content: "×";
+        position: absolute;
+        left: 0;
+        color: var(--error-red);
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 1;
+        top: 2px;
+      }
+
+      .browser-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .browser-tag {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .terminal-window {
+        background: #000000;
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .terminal-header {
+        background: #1a1b26;
+        padding: 8px 15px;
+        display: flex;
+        gap: 6px;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .terminal-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .terminal-body {
+        padding: 15px;
+        overflow-x: auto;
+      }
+
+      code {
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        color: #00ff00;
+        font-size: 13px;
+      }
+
+      .dev-note {
+        background: rgba(0, 243, 255, 0.05);
+        border-left: 3px solid var(--neon-blue);
+        padding: 15px;
+        border-radius: 0 6px 6px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-top: 20px;
+      }
+
+      .warning-note {
+        background: rgba(255, 184, 108, 0.05);
+        border-left: 3px solid var(--warning-orange);
+        padding: 15px;
+        border-radius: 0 6px 6px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-top: 20px;
+      }
+
+      .highlight {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+      }
+
+      .back-link:hover {
+        color: var(--neon-blue);
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          padding: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Audio<span style="font-weight: 800">Mint</span></h1>
+        <p>Setup & Troubleshooting Guide</p>
+      </div>
+
+      <div class="card">
+        <h2>🌐 Browser Compatibility</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px">
+          The AudioMint Companion Extension relies on advanced Chromium audio
+          capture APIs to route sound securely and seamlessly.
+        </p>
+
+        <h3 style="color: var(--neon-blue)">
+          ✅ Fully Supported (Chromium-Based)
+        </h3>
+        <div class="browser-grid">
+          <div class="browser-tag">Google Chrome</div>
+          <div class="browser-tag">Microsoft Edge</div>
+          <div class="browser-tag">Brave</div>
+          <div class="browser-tag">Opera / GX</div>
+          <div class="browser-tag">Arc</div>
+        </div>
+
+        <h3 style="color: var(--error-red); margin-top: 30px">
+          ❌ Not Currently Supported
+        </h3>
+        <ul class="cross-list">
+          <li>
+            <strong>Apple Safari:</strong> Uses a completely different
+            proprietary extension ecosystem.
+          </li>
+          <li>
+            <strong>Mozilla Firefox:</strong> Handles background audio routing
+            and Manifest V3 differently than Chromium.
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🧩 Browser Extension Setup</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px">
+          The AudioMint Companion extension acts as the bridge between your
+          browser and the desktop app.
+        </p>
+
+        <ul class="step-list">
+          <li>
+            <strong>Pin the Extension:</strong> Click the puzzle piece icon in
+            your browser and "Pin" AudioMint to your toolbar for easy access.
+          </li>
+          <li>
+            <strong>Initial Activation:</strong> Click the AudioMint icon to
+            wake up the extension. This explicitly grants it permission to read
+            your current active tab.
+          </li>
+          <li>
+            <strong>Hardware Permissions:</strong> The very first time you use
+            AudioMint, the browser may display a popup asking for Microphone
+            permissions. <strong>You must click Allow.</strong> We do not record
+            your microphone; this permission is required by the browser simply
+            to read the names of your connected speakers and headphones.
+          </li>
+        </ul>
+
+        <div class="warning-note">
+          <strong style="color: #fff"
+            >Why isn't my YouTube tab showing up?</strong
+          ><br />
+          If a tab was already open and playing media <em>before</em> you
+          installed or activated the extension or opening the app, it missed the
+          initial handshake. <strong>Simply refresh the browser tab</strong> to
+          connect it instantly.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🪟 Windows Installation & Setup</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px">
+          Windows is highly suspicious of indie applications that route hardware
+          audio. You may encounter these standard security blocks during
+          installation:
+        </p>
+
+        <h3>1. Windows Defender "SmartScreen"</h3>
+        <ul class="step-list">
+          <li>
+            When you run the <code>.exe</code> installer, Windows may show a
+            blue screen saying "Windows protected your PC."
+          </li>
+          <li>Click <strong>More Info</strong>.</li>
+          <li>
+            Click <strong>Run Anyway</strong> to proceed with the installation.
+          </li>
+        </ul>
+
+        <h3>2. Empty Folders / Antivirus Blocks</h3>
+        <p
+          style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px"
+        >
+          If the app says "Missing Shortcut" or the installation folder is
+          empty, your third-party antivirus (McAfee, Norton, Avast, etc.)
+          silently deleted the app during extraction.
+        </p>
+        <ul class="step-list">
+          <li>Open your Antivirus software.</li>
+          <li>
+            Go to the <strong>Virus Vault</strong> or
+            <strong>Protection History</strong>.
+          </li>
+          <li>
+            Find AudioMint and select
+            <strong>Restore / Allow on Device</strong>.
+          </li>
+          <li>
+            <em
+              >Tip: Running the installer as Administrator can also help bypass
+              silent extraction blocks.</em
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🍏 macOS Installation & Setup</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px">
+          Because AudioMint deeply routes system audio, macOS Gatekeeper may
+          flag the initial download from indie developers. Here is how to bypass
+          it safely:
+        </p>
+
+        <ul class="step-list">
+          <li>Download the <code>.dmg</code> file and open it.</li>
+          <li>
+            Drag the <span class="highlight">AudioMint</span> app directly into
+            your <span class="highlight">Applications</span> folder.
+          </li>
+          <li>
+            If macOS says the app "cannot be opened," open your
+            <strong>Terminal</strong> (press <code>Cmd + Space</code> and type
+            "Terminal").
+          </li>
+          <li>Copy and paste the following command and press Enter:</li>
+        </ul>
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-dot" style="background: #ff5f56"></div>
+            <div class="terminal-dot" style="background: #ffbd2e"></div>
+            <div class="terminal-dot" style="background: #27c93f"></div>
+          </div>
+          <div class="terminal-body">
+            <code
+              >codesign --force --deep --sign -
+              /Applications/AudioMint.app</code
+            >
+          </div>
+        </div>
+
+        <ul class="step-list">
+          <li>
+            You can now safely launch AudioMint from your Launchpad or
+            Applications folder!
+          </li>
+        </ul>
+
+        <div class="dev-note">
+          <strong style="color: #fff">Developer Note:</strong> This securely
+          signs the application locally on your machine to bypass the Apple
+          Developer paywall. It is a standard practice for open-source and indie
+          software.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🛠️ No Sound? (Windows Troubleshooting)</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px">
+          If the desktop app is connected and the route is drawn, but you don't
+          hear any sound out of your target speaker, check these two hidden
+          Windows settings:
+        </p>
+
+        <h3>1. The Windows Volume Mixer Mute</h3>
+        <ul class="step-list">
+          <li>
+            Windows often mutes newly installed, unsigned applications by
+            default.
+          </li>
+          <li>
+            Right-click the <strong>Speaker Icon</strong> in your Windows
+            taskbar (bottom right).
+          </li>
+          <li>Select <strong>Open Volume mixer</strong>.</li>
+          <li>
+            Scroll down to the Apps section, find <strong>AudioMint</strong>,
+            and ensure the volume slider is up and it is not muted.
+          </li>
+        </ul>
+
+        <h3>2. Windows Privacy Restrictions</h3>
+        <ul class="step-list">
+          <li>
+            Windows may be blocking the app's access to the audio hardware
+            engine.
+          </li>
+          <li>Open the Windows <strong>Settings</strong> app.</li>
+          <li>
+            Navigate to <strong>Privacy & security &gt; Microphone</strong>.
+          </li>
+          <li>
+            Scroll to the very bottom of the page to the section titled
+            <em>"Let desktop apps access your microphone"</em>.
+          </li>
+          <li>
+            Ensure this toggle is set to <strong>ON</strong>. Restart AudioMint.
+          </li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 50px">
+        <a href="/" class="back-link">← Back to AudioMint Home</a>
+      </div>
+    </div>
+  </body>
+</html>

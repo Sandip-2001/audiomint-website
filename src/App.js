@@ -17,7 +17,7 @@ function App() {
       </nav>
 
       <section className="hero">
-        <div className="badge">v2.0.0 Now Available</div>
+        <div className="badge">v2.0.1 Now Available</div>
         <h1>
           Seamless audio pipelines, <br />{" "}
           <span className="gradient-text">Built for your desktop.</span>

@@ -66,16 +66,26 @@ function App() {
             sending tab audio directly to the desktop app via a local WebSocket.
           </p>
           <div style={{ marginTop: "25px" }}>
-            <button
+            <a
+              href="https://chromewebstore.google.com/detail/mehnfopagbbmjfoiodbahfnbndhpflbp?utm_source=item-share-cb"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-sub"
               style={{
-                border: "1px solid #444",
+                display: "inline-block", // Ensures the a-tag respects padding like a button
+                textDecoration: "none", // Removes the default blue underline
+                color: "white", // Keeps the text color consistent
+                border: "1px solid var(--neon-blue)", // Upgraded to your neon blue to make it pop!
+                background: "rgba(0,243,255,0.1)", // Subtle glow matching your code block
                 padding: "10px 20px",
                 borderRadius: "10px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                transition: "all 0.3s ease", // Smooth hover effect if you have one
               }}
             >
-              Coming Soon to Chrome Web Store
-            </button>
+              Available on Chrome Web Store
+            </a>
           </div>
         </div>
         <div

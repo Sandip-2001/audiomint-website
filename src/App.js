@@ -1,5 +1,7 @@
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { track } from "@vercel/analytics";
 import "./App.css";
 
 function App() {
@@ -40,12 +42,14 @@ function App() {
           <a
             href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.1/AudioMint-2.0.0-arm64.dmg"
             className="btn-main"
+            onClick={() => track("Download_Mac_arm64")}
           >
             Download for Apple Silicon Macs (arm64)
           </a>
           <a
             href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.1/AudioMint.Setup.2.0.0.exe"
             className="btn-main"
+            onClick={() => track("Download_Windows_x64")}
           >
             Download for Windows (x64)
           </a>
@@ -72,6 +76,7 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-sub"
+              onClick={() => track("Clicked_Extension_Link")}
               style={{
                 display: "inline-block", // Ensures the a-tag respects padding like a button
                 textDecoration: "none", // Removes the default blue underline
@@ -229,6 +234,7 @@ function App() {
         </p>
       </footer>
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }

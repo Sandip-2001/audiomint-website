@@ -20,7 +20,7 @@ function App() {
       </nav>
 
       <section className="hero">
-        <div className="badge">v2.0.1 Now Available</div>
+        <div className="badge">v2.1.0 Now Available</div>
         <h1>
           Seamless audio pipelines, <br />{" "}
           <span className="gradient-text">Built for your desktop.</span>
@@ -40,14 +40,14 @@ function App() {
 
         <div className="download-box">
           <a
-            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.1/AudioMint-2.0.0-arm64.dmg"
+            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.1.0/AudioMint-2.1.0-arm64.dmg"
             className="btn-main"
             onClick={() => track("Download_Mac_arm64")}
           >
             Download for Apple Silicon Macs (arm64)
           </a>
           <a
-            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.0.1/AudioMint.Setup.2.0.0.exe"
+            href="https://github.com/Sandip-2001/audiomint-releases/releases/download/v2.1.0/AudioMint.Setup.2.1.0.exe"
             className="btn-main"
             onClick={() => track("Download_Windows_x64")}
           >

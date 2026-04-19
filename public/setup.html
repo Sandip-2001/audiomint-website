@@ -394,10 +394,10 @@
             <div class="terminal-dot" style="background: #27c93f"></div>
           </div>
           <div class="terminal-body">
-            <code
-              >codesign --force --deep --sign -
-              /Applications/AudioMint.app</code
-            >
+            <code>
+              xattr -cr /Applications/AudioMint.app &amp;&amp; codesign --force
+              --deep --sign - /Applications/AudioMint.app
+            </code>
           </div>
         </div>
 
